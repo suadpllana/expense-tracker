@@ -1,0 +1,92 @@
+body{
+  text-align: center;
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: rgb(240, 235, 235);
+}
+.container{
+  width: 20%;
+  margin-left: 40%;
+ 
+  text-align: center;
+}
+.budget{
+  width: 300px;
+  height: 60px;
+
+  margin-top: 30px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  background-color: white;
+  box-shadow: 2px 2px 4px 4px rgb(223, 223, 223);
+}
+.expenseTracker .transaction{
+  position: relative;
+  background-color: white;
+  box-shadow: 2px 2px 4px 4px rgb(223, 223, 223);
+  height: 35px;
+}
+.green{
+  position: absolute;
+  right: 0;
+  background-color: green;
+  width: 5px;
+  height: 100%;
+  z-index: 1000;
+  top: 0;
+
+}
+.red{
+
+    position: absolute;
+    right: 0;
+    background-color: red;
+    width: 5px;
+    height: 100%;
+    z-index: 1000;
+    top: 0;
+  
+
+}
+.transaction span{
+margin-right: 10px;
+  float: right;
+}
+.transaction p {
+  text-align: left;
+}
+.deleteTransaction{
+  cursor: pointer;
+}
+.transaction-button{
+  width: 100%;
+  height: 30px;
+  background-color: rgb(160, 27, 160);
+  border: none;
+  font-size: 20px;
+  color: white;
+  cursor: pointer;
+}
+.transaction-button:hover{
+  opacity: 0.7;
+}
+.income , .expense{
+  margin-top: 10px;
+}
+
+.income{
+  color: green;
+}
+.expense{
+  color: red;
+}
+.deleteTransaction{
+  position: absolute;
+  left: -35px;
+  height: 100%;
+  width: 35px;
+  top: 0;
+  background-color: red;
+  color: wheat;
+  font-size: 20px;
+  border: none;
+}
