@@ -2,17 +2,16 @@ import React from 'react'
 import {useState , useRef , useEffect} from "react"
 const Expense = () => {
 
-   
 
     const [transactions , setTransaction] = useState(() => {
-        const savedData = localStorage.getItem("myData");
-        return savedData ? JSON.parse(savedData) : [];
+        const expenseTracker_savedData = localStorage.getItem("expenseTrackerData");
+        return expenseTracker_savedData ? JSON.parse(expenseTracker_savedData) : [];
       })
     const inputRef = useRef(null)
     const amountRef = useRef(null)
 
     useEffect(() => {
-        localStorage.setItem("myData", JSON.stringify(transactions));
+        localStorage.setItem("expenseTrackerData", JSON.stringify(transactions));
       }, [transactions]);
 
     function addTransaction(){
