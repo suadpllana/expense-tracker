@@ -90,3 +90,29 @@ margin-right: 10px;
   font-size: 20px;
   border: none;
 }
+@media (max-width: 767px) {
+  .container{
+   margin-left: 0;
+    width: 100%;
+  }
+  .budget{
+    margin-left: 10%;
+  }
+  .expenseTracker .transaction{
+    width: 80%;
+    margin-left: 15%;
+  }
+}
+@media (min-width: 768px) and (max-width: 1217px) {
+  .container{
+   margin-left: 20%;
+    width: 60%;
+  }
+  .budget{
+    margin-left: 20%;
+  }
+  .expenseTracker .transaction{
+    width: 80%;
+    margin-left: 15%;
+  }
+}
