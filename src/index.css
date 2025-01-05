@@ -91,6 +91,9 @@ margin-right: 10px;
   border: none;
 }
 @media (max-width: 767px) {
+  .deleteTransaction{
+    left: -40px;
+  }
   .container{
    margin-left: 0;
     width: 100%;

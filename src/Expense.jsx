@@ -69,14 +69,14 @@ const Expense = () => {
 
         <div className="expenseTracker">
             {transactions.map((transaction) => (
-                <>
-                 <div key={Math.random()} className="transaction" >
+              
+                 <div key={transaction.id} className="transaction" >
                     <p>{transaction.text} <span>{transaction.amount > 0  ? "+" + transaction.amount + "$"  : transaction.amount + "$"}</span></p>
                     <div className={parseInt(transaction.amount) > 0  ? "green" :"red"}></div>
                     <button className="deleteTransaction" onClick={() => deleteTransaction(transaction.id)}>X</button>
                 </div>
                
-                </>
+               
                
             ))}
 
