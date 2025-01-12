@@ -7,36 +7,50 @@ const Expense = () => {
         const expenseTracker_savedData = localStorage.getItem("expenseTrackerData");
         return expenseTracker_savedData ? JSON.parse(expenseTracker_savedData) : [];
       })
+      const [transactionDate , setTransactionDate] = useState("")
     const inputRef = useRef(null)
     const amountRef = useRef(null)
 
-    useEffect(() => {
-        localStorage.setItem("expenseTrackerData", JSON.stringify(transactions));
-      }, [transactions]);
 
-    function addTransaction(){
-        if(inputRef.current.value === "" || amountRef.current.value === "" || amountRef.current.value == 0
-           || amountRef.current.value < 0 && Math.abs(amountRef.current.value) > total 
-        ){
-            return
+    const date = new Date();
+    const formattedDate = date.toLocaleString("en-GB", { 
+        day: "2-digit", 
+        month: "long", 
+        year: "numeric", 
+        hour: "2-digit", 
+        minute: "2-digit", 
+        hour12: false 
+      }).replace(",", ""); 
+    
+    useEffect(() => {
+      localStorage.setItem("expenseTrackerData", JSON.stringify(transactions));
+    }, [transactions]);
+    
+    function addTransaction() {
+      if (
+        inputRef.current.value === "" ||
+        amountRef.current.value === "" ||
+        amountRef.current.value == 0 ||
+        (amountRef.current.value < 0 && Math.abs(amountRef.current.value) > total)
+      ) {
+        return;
+      }
+    
+      setTransaction((prev) => [
+        ...prev,
+        {
+          text: inputRef.current.value,
+          amount: parseFloat(amountRef.current.value).toFixed(2),
+          id: Math.random(),
+          date: formattedDate
         }
-       
-      
-        
-        setTransaction((prev) =>[
-            ...prev, 
-            {
-                text: inputRef.current.value,
-                amount: (parseFloat(amountRef.current.value)).toFixed(2),
-                id: Math.random()
-            }]
-        )
-        
-      
-   
-       
-        
+      ]);
     }
+    
+        
+      
+      
+  
    
  
     function deleteTransaction(id){
@@ -73,6 +87,7 @@ const Expense = () => {
                  <div key={transaction.id} className="transaction" >
                     <p>{transaction.text} <span>{transaction.amount > 0  ? "+" + transaction.amount + "$"  : transaction.amount + "$"}</span></p>
                     <div className={parseInt(transaction.amount) > 0  ? "green" :"red"}></div>
+                    <p>Date : { transaction.date}</p>
                     <button className="deleteTransaction" onClick={() => deleteTransaction(transaction.id)}>X</button>
                 </div>
                
