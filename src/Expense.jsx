@@ -30,12 +30,17 @@ const Expense = () => {
       if (
         inputRef.current.value === "" ||
         amountRef.current.value === "" ||
-        amountRef.current.value == 0 ||
-        (amountRef.current.value < 0 && Math.abs(amountRef.current.value) > total)
+        amountRef.current.value == 0 
+       
       ) {
+      
         return;
       }
-    
+      if( (amountRef.current.value < 0 && Math.abs(amountRef.current.value) > total))
+{
+  alert("You cannot have negative balance")
+  return
+}    
       setTransaction((prev) => [
         ...prev,
         {
@@ -54,7 +59,14 @@ const Expense = () => {
    
  
     function deleteTransaction(id){
+      const getTheLastPositiveTransaction = transactions.filter(transaction => transaction.id === id)
+      if(Number(getTheLastPositiveTransaction[0].amount) > total ){
+        alert("You cannot have negative balance")
+        return
+      }
+      console.log(getTheLastPositiveTransaction)
         const filteredTransactions = transactions.filter((transaction) => transaction.id !== id)
+    
         setTransaction(filteredTransactions)
  
     }
@@ -86,7 +98,7 @@ const Expense = () => {
               
                  <div key={transaction.id} className="transaction" >
                     <p>{transaction.text} <span>{transaction.amount > 0  ? "+" + transaction.amount + "$"  : transaction.amount + "$"}</span></p>
-                    <div className={parseInt(transaction.amount) > 0  ? "green" :"red"}></div>
+                    <div className={Number(transaction.amount) > 0.0  ? "green" :"red"}></div>
                     <p>Date : { transaction.date}</p>
                     <button className="deleteTransaction" onClick={() => deleteTransaction(transaction.id)}>X</button>
                 </div>
