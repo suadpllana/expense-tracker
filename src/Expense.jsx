@@ -30,10 +30,11 @@ const Expense = () => {
       if (
         inputRef.current.value === "" ||
         amountRef.current.value === "" ||
-        amountRef.current.value == 0 
+        amountRef.current.value == 0  ||
+        isNaN(amountRef.current.value) 
        
       ) {
-      
+        alert("Please fill the input fields correctly");
         return;
       }
       if( (amountRef.current.value < 0 && Math.abs(amountRef.current.value) > total))
